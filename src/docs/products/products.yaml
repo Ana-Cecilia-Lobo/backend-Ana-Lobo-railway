@@ -1,0 +1,199 @@
+paths:
+  /api/products/:
+    get:
+      summary: Ruta para obtener todos los productos
+      tags:
+        - Products
+      responses:
+        "200":
+          description: Los productos se obtuvieron correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Products'
+        "500":
+          description: Error interno del servidor
+    post: 
+      summary: Ruta para agregar un producto
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/UpdateProduct"
+      responses:
+        "200":
+          description: El producto se añadió correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/SuccessUpdate'
+        "400":
+          description: Error, faltan campos // no tienes los permisos
+  /api/products/{pid}:
+    get:
+      summary: Ruta para obtener un producto por su id 
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: id del producto que se desea solicitar
+          schema:
+            $type: string
+      responses:
+        "200":
+          description: Los productos se obtuvieron correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Products'
+        "500":
+          description: Error interno del servidor
+    put:
+      summary: Actualizar un producto a partir de su id
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: id del producto que se desea actualizar
+          schema:
+            $type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/UpdateProduct'
+      responses:
+        "200":
+          description: Producto actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/SuccessUpdate'
+        "500":
+          description: Error del servidor 
+    delete:
+      summary: Eliminar un producto a partir de su id
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: id del producto que se desea actualizar
+          schema:
+            $type: string
+      responses:
+        "200":
+          description: Producto eliminado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/SuccessUpdate'
+        "500":
+          description: Error del servidor 
+
+
+
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: id unico autogenerado por la base de datos
+        title:
+          type: string
+          description: Nombre del producto
+        description:
+          type: string
+          description: Descripción del producto
+        price:
+          type: number
+          description: Precio del producto
+        code:
+          type: string
+          description: Código único del producto
+        status:
+          type: boolean
+          description: Disponibilidad del producto
+        thumbnail:
+          type: string
+          description: Imagen del producto
+        stock:
+          type: number
+          description: Cantidad de ejemplares del producto
+        category:
+          type: string
+          description: Categoría del producto
+        owner:
+          type: ObjectId
+          description: Id del dueño del producto
+      example:
+        _id: ObjectId("jhgasd987123kja")
+        title: Nevera
+        description: Gris Oscuro
+        price: 700
+        code: 1111
+        status: true
+        thumbnail: "skjdhkjgljsfd.jpg"
+        stock: 32
+        category: Cocina
+        owner: ObjectId("64ad8a7a712e3088901ccf96")
+    SuccessUpdate:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+      example:
+        status: success
+        message: product updated
+  requestBodies:
+    UpdateProduct:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Nombre del producto
+        description:
+          type: string
+          description: Descripción del producto
+        price:
+          type: number
+          description: Precio del producto
+        code:
+          type: string
+          description: Código único del producto
+        status:
+          type: boolean
+          description: Disponibilidad del producto
+        stock:
+          type: number
+          description: Cantidad de ejemplares del producto
+        category:
+          type: string
+          description: Categoría del producto
+        owner:
+          type: ObjectId
+          description: Id del dueño del producto
+      example:
+        title: Nevera
+        description: Gris Oscuro
+        price: 700
+        code: 1111
+        status: true
+        stock: 32
+        category: Cocina
+        owner: 64ad8a7a712e3088901ccf96

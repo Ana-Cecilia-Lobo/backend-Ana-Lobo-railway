@@ -1,0 +1,32 @@
+<div>
+    <a href="/">Inicio</a>
+    <a href="/products?page=1">Productos</a>
+    <a href="/chat">Chat</a>
+    <a href="/realtimeproducts">Productos en tiempo real</a>
+    <a href="/profile">Perfil</a>
+    <a href="/update-users">Usuarios</a>
+    
+
+</div>
+<h1>Productos</h1>
+<div>
+    <ol>
+        {{#each renProducts}}
+        <li>
+            <ul>
+                <li>{{this.title}}</li>
+                <li>{{this.description}}</li>
+                <li>{{this.code}}</li>
+                <li>{{this.price}}</li>
+                <li>{{this.status}}</li>
+                <li>{{this.stock}}</li>
+                <li>{{this.category}}</li>
+                
+            </ul>
+        </li>
+        <br>
+    {{/each}}
+    </ol>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>

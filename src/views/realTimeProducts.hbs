@@ -1,0 +1,32 @@
+<div>
+    <a href="/">Inicio</a>
+    <a href="/products?page=1">Productos</a>
+    <a href="/chat">Chat</a>
+    <a href="/realtimeproducts">Productos en tiempo real</a>
+    <a href="/profile">Perfil</a>
+	<a href="/update-users">Usuarios</a>
+
+</div>
+
+<h2>Agregar productos</h2>
+<form id="form">
+
+    <input type="text" placeholder="Título" name="title" />
+	<input type="text" placeholder="Descripción" name="description" />
+	<input type="text" placeholder="Código" name="code" />
+	<input type="text" placeholder="Precio" name="price" />
+	<input type="text" placeholder="Stock" name="stock" />
+	<input type="text" placeholder="Categoría" name="category" />
+	<input type="text" placeholder="URL de imagen" name="thumbnails" />
+	<button type="submit">Agregar</button> 
+
+</form>
+
+<h1>Productos</h1>
+<ol id="products"></ol>
+
+
+
+
+<script src="socket.io/socket.io.js"></script>
+<script src="js/home.js"></script>

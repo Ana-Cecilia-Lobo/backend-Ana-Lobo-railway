@@ -1,0 +1,47 @@
+<div>
+    <a href="/">Inicio</a>
+    <a href="/products?page=1">Productos</a>
+    <a href="/chat">Chat</a>
+    <a href="/realtimeproducts">Productos en tiempo real</a>
+    <a href="/profile">Perfil</a>
+    <a href="/update-users">Usuarios</a>
+
+</div>
+<h1>Pagina de productos</h1>
+
+<button id="cart" onclick="cart()">Ver carrito</button>
+<br/>
+{{#if totalDocs}}
+    <div>
+        Listado de productos
+        <ul>
+        {{#each payload}}
+            <li>{{this.title}}</li>
+            <li>{{this.description}}</li>
+            <li>{{this.code}}</li>
+            <li>{{this.price}}</li>
+            <li>{{this.status}}</li>
+            <li>{{this.stock}}</li>
+            <li>{{this.category}}</li>
+            <button onclick="addToCart(`{{this.id}}`)">Agregar al carrito</button>
+            <hr>
+        {{/each}}
+        </ul>
+    </div>
+    <div>
+        {{#if hasPrevPage}}
+            <a href={{prevLink}}>Anterior</a>
+        {{/if}}
+
+        {{page}}
+
+        {{#if hasNextPage}}
+            <a href={{nextLink}}>Siguiente</a>
+        {{/if}}
+    </div>
+{{else}}
+    <p>no hay productos</p>
+{{/if}}
+
+<script src="socket.io/socket.io.js"></script>
+<script src="js/products.js"></script>

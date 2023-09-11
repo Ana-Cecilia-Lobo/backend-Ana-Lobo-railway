@@ -1,0 +1,168 @@
+[
+  {
+    "title": "microondas",
+    "description": "muy muy grande",
+    "price": 1000,
+    "thumbnail": "a",
+    "code": 1111,
+    "stock": 2,
+    "id": 1
+  },
+  {
+    "title": "neveraa",
+    "description": "azul",
+    "price": 1200,
+    "thumbnail": "aa",
+    "code": 1112,
+    "stock": 5,
+    "id": 2
+  },
+  {
+    "title": "cocina",
+    "description": "amarilla",
+    "price": 1300,
+    "thumbnail": "aaa",
+    "code": 1113,
+    "stock": 3,
+    "id": 3
+  },
+  {
+    "title": "horno",
+    "description": "verde",
+    "price": 1250,
+    "thumbnail": "aaaa",
+    "code": 1114,
+    "stock": 5,
+    "id": 4
+  },
+  {
+    "title": "lavadora",
+    "description": "azul",
+    "price": 1100,
+    "thumbnail": "aa",
+    "code": 1115,
+    "stock": 10,
+    "id": 5
+  },
+  {
+    "title": "secadora",
+    "description": "azul",
+    "price": 1200,
+    "thumbnail": "aa",
+    "code": 1116,
+    "stock": 7,
+    "id": 6
+  },
+  {
+    "title": "hervidor",
+    "description": "azul",
+    "price": 200,
+    "thumbnail": "aa",
+    "code": 1117,
+    "stock": 20,
+    "id": 7
+  },
+  {
+    "title": "television",
+    "description": "azul",
+    "price": 1500,
+    "thumbnail": "aa",
+    "code": 1118,
+    "stock": 5,
+    "id": 8
+  },
+  {
+    "title": "computador",
+    "description": "azul",
+    "price": 1700,
+    "thumbnail": "aa",
+    "code": 1119,
+    "stock": 4,
+    "id": 9
+  },
+  {
+    "title": "celular",
+    "description": "azul",
+    "price": 900,
+    "thumbnail": "aa",
+    "code": 1120,
+    "stock": 25,
+    "id": 10
+  },
+  {
+    "title": "hervidor",
+    "description": "rosa",
+    "code": 1121,
+    "price": 600,
+    "status": true,
+    "stock": 10,
+    "category": "nose",
+    "thumbnails": "aa",
+    "id": 11
+  },
+  {
+    "title": "guitarra",
+    "description": "roja",
+    "code": 1122,
+    "price": 1600,
+    "status": true,
+    "stock": 13,
+    "category": "x",
+    "id": 12
+  },
+  {
+    "title": "botella",
+    "description": "plastica",
+    "code": "59574",
+    "price": "200",
+    "status": "true",
+    "stock": "7",
+    "category": "ererer",
+    "thumbnails": "erff",
+    "id": 13
+  },
+  {
+    "title": "licuadora",
+    "description": "pro",
+    "code": "1122334",
+    "price": "1300",
+    "status": "true",
+    "stock": "27",
+    "category": "cocina",
+    "thumbnails": "sdsdfd",
+    "id": 14
+  },
+  {
+    "title": "56",
+    "description": "56",
+    "code": "56",
+    "price": "56",
+    "status": "true",
+    "stock": "56",
+    "category": "56",
+    "thumbnails": "56",
+    "id": 15
+  },
+  {
+    "title": "rt",
+    "description": "rttr",
+    "code": "rtrt",
+    "price": "rtrt",
+    "status": "true",
+    "stock": "rtrt",
+    "category": "rtrt",
+    "thumbnails": "rtrt",
+    "id": 16
+  },
+  {
+    "title": "lámpara",
+    "description": "luz blanca",
+    "code": "2232",
+    "price": "275",
+    "status": "true",
+    "stock": "28",
+    "category": "iluminacion",
+    "thumbnails": "gdgdf",
+    "id": 17
+  }
+]
