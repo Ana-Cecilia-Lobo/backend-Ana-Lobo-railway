@@ -13,7 +13,7 @@ export class Tickets{
             return data;
            
         } catch (error) {
-            throw new Error(`Error al crear el ticket ${error.message}`);
+            return {status: "error", message: error.message }
         }
     }
 
@@ -23,7 +23,7 @@ export class Tickets{
             return ticket
             
         } catch (error) {
-            return
+            return {status: "error", message: error.message }
         }
     }
 }

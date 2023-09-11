@@ -10,7 +10,7 @@ export class UserMongo{
             const user = await this.model.findOne({email:emailUser});
             return JSON.parse(JSON.stringify(user));
         } catch (error) {
-            throw error;
+            return {status: "error", message: error.message }
         }
     };
 
@@ -18,11 +18,11 @@ export class UserMongo{
         try {
             const user = await this.model.findById(userId);
             if(!user){
-                throw new Error("El usuario no existe");
+                return 
             }
             return JSON.parse(JSON.stringify(user));
         } catch (error) {
-            throw error;
+            return {status: "error", message: error.message }
         }
     };
 
@@ -31,7 +31,7 @@ export class UserMongo{
             const userCreated = await this.model.create(user);
             return userCreated;
         } catch (error) {
-            throw error;
+            return {status: "error", message: error.message }
         }
     };
 
@@ -39,11 +39,11 @@ export class UserMongo{
         try {
             const userUpdated = await this.model.findByIdAndUpdate(userId,newInfo,{new:true});
             if(!userUpdated){
-                throw new Error("usuario no encontrado");
+                return
             }
             return userUpdated;
         } catch (error) {
-            throw error;
+            return {status: "error", message: error.message }
         }
     };
 
@@ -52,7 +52,7 @@ export class UserMongo{
             await this.model.deleteOne({ "email" : "roberto@gmail.com" });
             return {message: "Usuario eliminado"};
         } catch (error) {
-            return
+            return {status: "error", message: error.message }
         }
     }
     async getUsers(){
@@ -60,7 +60,7 @@ export class UserMongo{
             const users = await this.model.find().lean();
             return users; 
         }catch(error){
-            throw new Error(`Error al capturar los productos ${error.message}`);
+            return {status: "error", message: error.message }
         }
     }
 
@@ -69,7 +69,7 @@ export class UserMongo{
             const user = await this.model.findByIdAndDelete(id);
             return {message: "Usuario eliminado"};
         }catch(error){
-            return error
-        }
+            return {status: "error", message: error.message }
+         }
     }
 }

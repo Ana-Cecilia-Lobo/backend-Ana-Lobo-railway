@@ -12,7 +12,7 @@ export class CartsMongo{
             const data = await this.model.create(cart);
             return data;     
         } catch (error) {
-            throw new Error(`Error al crear el carrito ${error.message}`);
+            return {status: "error", message: error.message }
         }
     }
 
@@ -25,7 +25,7 @@ export class CartsMongo{
                 return
             }
         } catch (error) {
-            return
+            return {status: "error", message: error.message }
         }
     }
 
@@ -38,7 +38,6 @@ export class CartsMongo{
                 const verifyExistance = productIds.includes(productID)
 
                 if(verifyExistance == true){
-
                     const data =await this.model.findOneAndUpdate(
                         { _id: cartId, "products.productId": productID},                  
                         { $inc: { "products.$.quantity": 1 } },
@@ -56,9 +55,11 @@ export class CartsMongo{
                     const cart = await this.model.find({_id: cartId}).populate('products.productId');
                     return cart   
                 }
-            }  
+            } else{
+                return 
+            }
         } catch (error) {
-            return error.message
+            return {status: "error", message: error.message }
         }
     }
 
@@ -86,11 +87,13 @@ export class CartsMongo{
                     return cart  
 
                 }else{
-                    return
+                    return 
                 }
+            }else{
+                return 
             }
         } catch (error) {
-           return
+            return {status: "error", message: error.message}
         }
     }
 
@@ -118,31 +121,29 @@ export class CartsMongo{
             return response
             
         } catch (error) {
-            return
+            return {status: "error", message: error.message }
         }
     }
 
     async updateQuantity(cartId,productID, quantity){
         try {
-            const data =await this.model.findOneAndUpdate(
+            const data = await this.model.findOneAndUpdate(
                 { _id: cartId, "products.productId": productID},                  
                 { $inc: { "products.$.quantity": quantity } },
                 { new: true });
-                
-                //logger.debug(data)
             const cart = await this.model.find({_id: cartId}).populate('products.productId');
             return cart          
         } catch (error) {
-           return
+            return {status: "error", message: error.message }
         }
     }
 
     async deleteCart(cartId){
         try {     
-            const data =  await this.model.findByIdAndDelete(cartId);
+            const data =  await this.model.findByIdAndDelete(cartId);      
             return data  
         } catch (error) {
-           return error
+            return {status: "error", message: error.message }
         }
         
     }

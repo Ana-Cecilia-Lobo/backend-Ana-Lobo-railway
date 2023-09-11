@@ -104,7 +104,7 @@ export class ProductsController{
         try{
             const product = req.body;
             const add = await ProductsService.createProduct(product);
-            if(!add){
+            if(add.message.includes("products validation failed")){
                 CustomError.createError({
                     name: "Error al crear el producto",
                     cause: "Error",
@@ -155,6 +155,14 @@ export class ProductsController{
             const id = req.params.pid;
             if(id){
                 const product = await ProductsService.getProductById(id)
+                if(!product){
+                    CustomError.createError({
+                        name: "Id no válido",
+                        cause: "Error",
+                        message: "No se pudo eliminar el producto",
+                        errorCode: EError.INVALID_JSON
+                    });
+                }
                 const owner = JSON.stringify(product.owner).replace('"', '').replace('"', '');
                 const user =  await UsersService.getUserById(owner)
                 const deleteProduct = await ProductsService.deleteProduct(id);

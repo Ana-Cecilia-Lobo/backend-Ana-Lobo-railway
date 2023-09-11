@@ -11,7 +11,6 @@ const checkSession = (req, res, next)=>{
 
 const canAddProducts = (req, res, next)=>{
     const user = req.user.rol;
-    console.log(user)
      if(user === "admin" || user === "premium"){
          next()
      }else{
@@ -25,6 +24,10 @@ const canUpdateProducts = async(req, res, next)=>{
     const productid = req.params.pid;
 
     const product = await ProductsService.getProductById(productid)
+    console.log(product)
+    if(!product){
+        return res.send('No se encontró el producto <a href="/">Volver al home</a></div>');
+    }
     const owner = JSON.parse(JSON.stringify(product.owner))
 
     if(owner == user || rol === "admin"){
@@ -65,6 +68,10 @@ const addOwnProduct = async (req, res, next)=>{
     const productid = req.params.pid;
 
     const product = await ProductsService.getProductById(productid)
+    
+    if(typeof(product) == "undefined"){
+        return res.send('No se encontró el producto <a href="/">Volver al home</a></div>');
+    }
     const owner = JSON.parse(JSON.stringify(product.owner))
 
     if(user == owner || rol === "admin"){

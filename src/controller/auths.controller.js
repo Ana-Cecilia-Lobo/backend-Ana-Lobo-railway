@@ -48,7 +48,7 @@ export class SessionsController{
                 await sendRecoveryEmail(email,token);
                 res.send("Se ha enviado un enlace a tu correo");
             }else{
-                throw new Error("Email no válido")
+                return res.json({status: "error", message:"Email no válido" })
             }
         } catch (error) {
             res.send({status:"error", message:error.message})

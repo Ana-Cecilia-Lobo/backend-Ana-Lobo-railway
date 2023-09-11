@@ -13,7 +13,12 @@ export class UsersController{
 
             const user = await UsersService.getUserById(userId);
             if(!user){
-                return res.send("El usuario no existe, <a href='/singup'>Registrarse</a>");
+                CustomError.createError({
+                    name: "Error al modificar usuario",
+                    cause: "Error",
+                    message: "El usuario no existe",
+                    errorCode: EError.INVALID_JSON
+                });
             }
 
             let rol;
@@ -59,7 +64,12 @@ export class UsersController{
 
             const user = await UsersService.getUserById(userId);
             if(!user){
-                return res.send("El usuario no existe, <a href='/singup'>Registrarse</a>");
+                CustomError.createError({
+                    name: "Error al agregar documentos",
+                    cause: "Error",
+                    message: "El usuario no existe",
+                    errorCode: EError.INVALID_JSON
+                });
             }
 
             const identificacion = req.files["identificacion"]?.[0] || null;
@@ -75,7 +85,6 @@ export class UsersController{
             if(estadoDeCuenta){
                 docs.push({name:"estadoDeCuenta", reference: estadoDeCuenta.filename})
             }
-            console.log(docs)
             
             user.documents = docs;
             const id = docs.some(e => e.name == 'identificacion');
@@ -96,7 +105,7 @@ export class UsersController{
             res.json({status:"success", message:"solicitud procesada"});
 
         } catch (error) {
-            console.log(error.message)
+            logger.error(error.message)
             res.status(400).json({status:"error", message:error.message});
         }
     }
@@ -105,7 +114,6 @@ export class UsersController{
         try {
             
             const users = await UsersService.getUsers();
-            console.log(users.length)
             let usersArray = [];
             for(let i = 0; i < users.length; i++ ){
                 const usersInfo = new getUsersDto(users[i]);
@@ -141,7 +149,6 @@ export class UsersController{
                     deleteUsers.push(user)
                 }
             }
-            console.log(deleteUsers)
 
             if(deleteUsers.length <= 0){
                 return res.json(`No se ha eliminado ningun usuario por inactividad`);
@@ -170,7 +177,15 @@ export class UsersController{
             let rol = req.params.rol
 
             const user = await UsersService.getUserById(id);
-
+            if(!user){
+                CustomError.createError({
+                    name: "Error al modificar usuario",
+                    cause: "Error",
+                    message: "El usuario no existe",
+                    errorCode: EError.INVALID_JSON
+                });
+            }
+            
             if(rol == "user"){
                 rol = "premium"
             }else if(rol == "premium"){
@@ -195,6 +210,14 @@ export class UsersController{
             const id = req.params.uid
 
             const user = await UsersService.getUserById(id);
+            if(!user){
+                CustomError.createError({
+                    name: "Error al eliminar usuario",
+                    cause: "Error",
+                    message: "El usuario no existe",
+                    errorCode: EError.INVALID_JSON
+                });
+            }
             const cartId = JSON.stringify(user.cart).replace('"', '').replace('"', '')
             const deletedcart = CartsService.deleteCart(cartId)
             const deleteUser = await UsersService.deleteUserId(id)
