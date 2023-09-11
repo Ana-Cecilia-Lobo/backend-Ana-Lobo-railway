@@ -2,7 +2,7 @@
 const addToCart = async (productId) => {
 	try {
 		const resp = await fetch(
-			`http://localhost:8080/user-cart`,
+			`https://backend-ana-lobo-railway-production.up.railway.app/user-cart`,
 			{
 				method: "get",
 			}
@@ -13,7 +13,7 @@ const addToCart = async (productId) => {
 		
 		if (productId && cartId) {
 			const resp = await fetch(
-				`http://localhost:8080/api/carts/${cartId}/product/${productId}`,
+				`https://backend-ana-lobo-railway-production.up.railway.app/api/carts/${cartId}/product/${productId}`,
 				{
 					method: "POST",
 				}
@@ -23,7 +23,7 @@ const addToCart = async (productId) => {
 			
 			if (result.status == "success") {
 				const payload = await fetch(
-					`http://localhost:8080/api/carts/${cartId}`,
+					`https://backend-ana-lobo-railway-production.up.railway.app/api/carts/${cartId}`,
 					{
 						method: "GET",
 					}
@@ -41,7 +41,7 @@ const addToCart = async (productId) => {
 const cart = async ()=>{
 	try {
 		const resp = await fetch(
-			`http://localhost:8080/user-cart`,
+			`https://backend-ana-lobo-railway-production.up.railway.app/user-cart`,
 			{
 				method: "GET",
 			}
@@ -50,7 +50,7 @@ const cart = async ()=>{
 		const cartId = await resp.json();
 
 		const res = 
-		(window.location.href = `http://localhost:8080/carts/${cartId}`)
+		(window.location.href = `https://backend-ana-lobo-railway-production.up.railway.app/carts/${cartId}`)
 		
 		
 		

@@ -22,7 +22,7 @@ const transporter = nodemailer.createTransport({
 
 export const sendRecoveryEmail = async(userEmail,token)=>{
 
-    const link = `http://localhost:8080/reset-password?token=${token}`;
+    const link = `https://backend-ana-lobo-railway-production.up.railway.app/reset-password?token=${token}`;
 
     await transporter.sendMail({
 

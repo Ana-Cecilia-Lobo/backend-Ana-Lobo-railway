@@ -8,14 +8,14 @@ let resp = "";
 let rol = "";
 window.onload = async function(){
 	resp = await fetch(
-		`http://localhost:8080/userid`,
+		`https://backend-ana-lobo-railway-production.up.railway.app/userid`,
 		{
 			method: "get",
 		}
 	).then(response => response.json()) ;
 
 	rol = await fetch(
-		`http://localhost:8080/userrol`,
+		`https://backend-ana-lobo-railway-production.up.railway.app/userrol`,
 		{
 			method: "get",
 		}

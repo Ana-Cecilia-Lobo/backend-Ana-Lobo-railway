@@ -86,7 +86,7 @@ passport.use("githubSignup", new githubStrategy(
     {
         clientID:"Iv1.dc95194f2f9bcc63",
         clientSecret:"ccf40ca3dee2bda147e4aa69f15677b8c8089c5a",
-        callbackUrl:"http://localhost:8080/api/sessions/github-callback"
+        callbackUrl:"https://backend-ana-lobo-railway-production.up.railway.app/api/sessions/github-callback"
     },
     async(accesstoken,refreshtoken,profile,done)=>{
         try {

@@ -32,7 +32,7 @@
         const rolUsuario = rol;
         
         const resp = await fetch(
-			`http://localhost:8080/api/users/update-user/${id}/${rol}`,
+			`https://backend-ana-lobo-railway-production.up.railway.app/api/users/update-user/${id}/${rol}`,
 			{
 				method: "put",
 			}
@@ -40,13 +40,13 @@
         const res = await resp.json();
 
         const reload = 
-		(window.location.href = `http://localhost:8080/update-users`)
+		(window.location.href = `https://backend-ana-lobo-railway-production.up.railway.app/update-users`)
 
     }
 
     const delete_User = async (id)=>{
         const resp = await fetch(
-			`http://localhost:8080/api/users/delete-a-user/${id}`,
+			`https://backend-ana-lobo-railway-production.up.railway.app/api/users/delete-a-user/${id}`,
 			{
 				method: "delete",
 			}
@@ -54,6 +54,6 @@
         const res = await resp.json();
 
         const reload = 
-		(window.location.href = `http://localhost:8080/update-users`)
+		(window.location.href = `https://backend-ana-lobo-railway-production.up.railway.app/update-users`)
     }
 </script>
